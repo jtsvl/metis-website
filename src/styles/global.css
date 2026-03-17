@@ -25,3 +25,17 @@
   0%, 100% { border-color: var(--color-accent); }
   50%       { border-color: transparent; }
 }
+
+.ecg-waveform {
+  animation: ecg-breathe 3.5s ease-in-out infinite;
+}
+@keyframes ecg-breathe {
+  0%, 100% { opacity: 0.10; }
+  50%       { opacity: 0.28; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ecg-waveform {
+    animation: none;
+    opacity: 0.15;
+  }
+}
