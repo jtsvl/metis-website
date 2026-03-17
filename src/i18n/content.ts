@@ -17,7 +17,7 @@ export const content = {
     hero: {
       kicker: "Gemeinnützig · Unabhängig · Wirkungsorientiert",
       headlineLine1: "Demokratie braucht",
-      typewriterWords: ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte."],
+      typewriterWords: ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte.", "Vielfalt."],
       subline:
         "METIS entwickelt evidenzbasierte Programme für politische Bildung, Medienkompetenz und demokratische Resilienz in Deutschland und Europa.",
       cta: "Unsere Arbeit",
@@ -92,7 +92,7 @@ export const content = {
     hero: {
       kicker: "Non-profit · Independent · Impact-driven",
       headlineLine1: "Democracy needs",
-      typewriterWords: ["Knowledge.", "Courage.", "Engagement.", "Dialogue.", "Fundamental Rights."],
+      typewriterWords: ["Knowledge.", "Courage.", "Engagement.", "Dialogue.", "Fundamental Rights.", "Diversity."],
       subline:
         "METIS designs evidence-based programs for civic education, media literacy, and democratic resilience in Germany and Europe.",
       cta: "Our work",

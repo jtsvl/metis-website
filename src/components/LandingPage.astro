@@ -12,13 +12,7 @@ const typewriterWords = t.hero.typewriterWords.join(',');
 ---
 
 <!-- Hero -->
-<section id="hero" class="bg-bg min-h-screen relative overflow-hidden flex flex-col justify-center py-[120px] sm:py-[80px]">
-  <!-- Dot-grid texture -->
-  <div
-    class="absolute bottom-0 right-0 pointer-events-none z-0"
-    style="background-image: radial-gradient(circle, var(--color-text-1) 1.5px, transparent 1.5px); background-size: 16px 16px; width: 320px; height: 160px; opacity: 0.12;"
-  ></div>
-
+<section id="hero" class="bg-bg min-h-screen relative flex flex-col justify-center py-[120px] sm:py-[80px]">
   <div class="px-16 relative z-10">
     <div class="max-w-3xl">
       <p class="text-accent text-[10px] tracking-[0.20em] uppercase font-medium mb-6">{t.hero.kicker}</p>
@@ -48,7 +42,12 @@ const typewriterWords = t.hero.typewriterWords.join(',');
 </section>
 
 <!-- Ziele -->
-<section id="ziele" class="py-24 bg-bg-2">
+<section id="ziele" class="py-24 bg-bg-2 relative overflow-visible">
+  <!-- Dot-grid texture: anchored to top-right, bleeds upward into hero -->
+  <div
+    class="absolute top-0 right-0 pointer-events-none z-10"
+    style="background-image: radial-gradient(circle, #818cf8 1.5px, transparent 1.5px); background-size: 16px 16px; width: 320px; height: 192px; opacity: 0.4; transform: translateY(-112px);"
+  ></div>
   <div class="max-w-5xl mx-auto px-6">
     <h2 class="font-display font-light text-text-1 text-3xl tracking-tight mb-14 text-center">{t.ziele.title}</h2>
     <div class="grid sm:grid-cols-3 gap-6">
@@ -66,6 +65,7 @@ const typewriterWords = t.hero.typewriterWords.join(',');
     </div>
   </div>
 </section>
+
 
 <!-- Projekte -->
 <section id="projekte" class="py-24 bg-bg">
