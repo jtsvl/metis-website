@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import type { Lang } from '../i18n/content';
+import { content, languages, defaultLang } from '../i18n/content';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+}
+
+const { lang = defaultLang, title = 'METIS' } = Astro.props;
+const t = content[lang];
+const otherLang = lang === 'de' ? 'en' : 'de';
+const otherLangPath = lang === 'de' ? '/en' : '/';
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={lang === 'de'
+      ? 'METIS – evidenzbasierte Programme für Grundrechts- und Demokratieförderung in Deutschland und Europa.'
+      : 'METIS – evidence-based programs for civic rights and democracy promotion in Germany and Europe.'} />
+    <title>{title}</title>
+    <link rel="icon" type="image/jpeg" href="/metis-logo.jpg" />
+  </head>
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+      <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href={lang === 'de' ? '/' : '/en'} class="flex items-center">
+          <img src="/metis-logo.jpg" alt="METIS Logo" class="h-10 w-auto" />
+        </a>
+        <div class="flex items-center gap-6 text-sm font-medium">
+          <a href="#ziele" class="text-gray-600 hover:text-indigo-700 transition-colors">{t.nav.ziele}</a>
+          <a href="#projekte" class="text-gray-600 hover:text-indigo-700 transition-colors">{t.nav.projekte}</a>
+          <a href="#kontakt" class="text-gray-600 hover:text-indigo-700 transition-colors">{t.nav.kontakt}</a>
+          <a
+            href={otherLangPath}
+            class="ml-2 px-3 py-1 rounded-full border border-gray-200 text-gray-500 hover:border-indigo-300 hover:text-indigo-600 transition-colors text-xs"
+          >
+            {languages[otherLang]}
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-100 py-10 mt-20">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <img src="/metis-logo.jpg" alt="METIS Logo" class="h-12 w-auto mx-auto mb-3" />
+        <p class="text-gray-500 text-sm mb-3">{t.footer.tagline}</p>
+        <p class="text-gray-400 text-xs">{t.footer.legal}</p>
+      </div>
+    </footer>
+  </body>
+</html>
