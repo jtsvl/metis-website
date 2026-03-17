@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>METIS – Design System Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── Core palette ── */
+    --bg:           #161618;   /* near-black charcoal */
+    --bg-2:         #1e1e21;   /* slightly lighter panel */
+    --bg-3:         #252528;   /* card / hover */
+    --border:       rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.18);
+
+    /* Text */
+    --text-1:  #f0eeeb;        /* primary — warm near-white */
+    --text-2:  rgba(240,238,235,0.55); /* secondary */
+    --text-3:  rgba(240,238,235,0.30); /* muted */
+
+    /* Accent — pulled from METIS logo */
+    --accent:        #5b7fa6;  /* logo slate blue */
+    --accent-light:  #7a9ec4;  /* lighter variant */
+    --accent-dim:    rgba(91,127,166,0.15); /* subtle bg tint */
+
+    /* Spacing */
+    --space-xs: 8px;
+    --space-s:  16px;
+    --space-m:  24px;
+    --space-l:  48px;
+    --space-xl: 80px;
+
+    /* Type */
+    --font-display: 'DM Sans', 'Inter', system-ui, sans-serif;
+    --font-body:    'Inter', system-ui, sans-serif;
+    --radius: 4px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0e0e10;
+    font-family: var(--font-body);
+    color: var(--text-1);
+    line-height: 1.5;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page { max-width: 1140px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+    margin-bottom: 24px;
+    margin-top: 60px;
+  }
+
+  /* ════════════════════════
+     HERO MOCKUP
+  ════════════════════════ */
+  .hero-demo {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .demo-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .demo-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .demo-logo-mark {
+    width: 36px; height: 36px;
+    background: url('/metis-logo.jpg') center/cover;
+    border-radius: 2px;
+    opacity: 0.9;
+    /* fallback placeholder */
+    background-color: var(--accent-dim);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  .demo-logo-text {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-1);
+  }
+  .demo-logo-sub {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    color: var(--text-3);
+    margin-top: 1px;
+  }
+  .demo-nav-links {
+    display: flex;
+    gap: 32px;
+  }
+  .demo-nav-links a {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .demo-nav-links a:hover { color: var(--text-1); }
+  .lang-switch {
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-left: 24px;
+  }
+
+  /* Hero content */
+  .demo-hero {
+    padding: 80px 40px 100px;
+    position: relative;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-kicker {
+    font-size: 11px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--text-1);
+    margin-bottom: 4px;
+  }
+  .hero-headline .typed {
+    color: var(--text-1);
+    border-right: 3px solid var(--accent);
+    padding-right: 4px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100% { border-color: var(--accent); } 50% { border-color: transparent; } }
+
+  .hero-subline {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-2);
+    max-width: 520px;
+    margin: 28px 0 36px;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-1);
+    background: var(--accent);
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .hero-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    border-bottom: 1px solid var(--border-hover);
+    padding-bottom: 3px;
+    margin-left: 28px;
+    text-decoration: none;
+  }
+  .demo-hero .dot-grid {
+    position: absolute;
+    right: 0; bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(22, 1fr);
+    gap: 8px;
+    padding: 20px;
+    opacity: 0.18;
+    width: 340px;
+  }
+  .demo-hero .dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--text-1);
+  }
+
+  /* ════════════════════════
+     COLOUR TOKENS
+  ════════════════════════ */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  .swatch {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .swatch-block { height: 56px; }
+  .swatch-info {
+    padding: 8px 10px;
+    background: var(--bg-2);
+  }
+  .swatch-name { font-size: 11px; font-weight: 500; color: var(--text-1); }
+  .swatch-hex  { font-size: 10px; color: var(--text-3); font-family: monospace; }
+
+  /* ════════════════════════
+     TYPE SCALE
+  ════════════════════════ */
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .type-meta {
+    flex: 0 0 120px;
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .type-sample { flex: 1; }
+
+  /* ════════════════════════
+     COMPONENTS
+  ════════════════════════ */
+  .components-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .comp-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .comp-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+
+  /* Buttons */
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn-primary {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    font-weight: 500; color: #fff;
+    background: var(--accent); border: none;
+    padding: 10px 22px; border-radius: var(--radius); cursor: pointer;
+  }
+  .btn-ghost {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    font-weight: 500; color: var(--text-2);
+    background: transparent;
+    border: 1px solid var(--border-hover);
+    padding: 10px 22px; border-radius: var(--radius); cursor: pointer;
+  }
+  .btn-link {
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--accent); background: none; border: none;
+    border-bottom: 1px solid var(--accent); cursor: pointer;
+    padding-bottom: 2px;
+  }
+
+  /* Card */
+  .card-demo {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .card-demo:hover { border-color: var(--border-hover); }
+  .card-tag {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px; display: block;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--text-1);
+  }
+  .card-body-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+
+  /* Form input */
+  .input-demo {
+    width: 100%;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text-1);
+    font-family: var(--font-body);
+    outline: none;
+    margin-bottom: 10px;
+  }
+  .input-demo:focus { border-color: var(--accent); }
+  .input-demo::placeholder { color: var(--text-3); }
+  .input-label {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 6px; display: block;
+  }
+
+  /* Section card (Ziele) */
+  .ziel-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .ziel-icon {
+    flex: 0 0 36px; height: 36px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 16px;
+  }
+
+  /* Caption */
+  .caption {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HERO MOCKUP ── -->
+  <div class="section-label">Hero – Animated Headline Mockup</div>
+  <div class="hero-demo">
+    <div class="demo-nav">
+      <div class="demo-logo">
+        <div class="demo-logo-mark">M</div>
+        <div>
+          <div class="demo-logo-text">METIS</div>
+          <div class="demo-logo-sub">Demokratie &amp; Grundrechte</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;">
+        <div class="demo-nav-links">
+          <a href="#">Ziele</a>
+          <a href="#">Projekte</a>
+          <a href="#">Kontakt</a>
+        </div>
+        <span class="lang-switch">EN</span>
+      </div>
+    </div>
+    <div class="demo-hero">
+      <div class="hero-kicker">Gemeinnützig · Unabhängig · Wirkungsorientiert</div>
+      <div class="hero-headline">
+        Demokratie braucht<br>
+        <span class="typed" id="typed">Wissen.</span>
+      </div>
+      <p class="hero-subline">
+        Wir entwickeln evidenzbasierte Programme für politische Bildung, Medienkompetenz und Einstellungsforschung — für eine starke Demokratie in Deutschland und Europa.
+      </p>
+      <div>
+        <a href="#" class="hero-cta">Unsere Arbeit →</a>
+        <a href="#" class="hero-cta-ghost">Mehr über uns</a>
+      </div>
+      <!-- dot grid texture -->
+      <div class="dot-grid">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+  </div>
+  <p class="caption">The typed word cycles: "Wissen." → "Mut." → "Engagement." → "Dialog." with a blinking cursor (same motion as braks.legal)</p>
+
+  <!-- ── COLOUR TOKENS ── -->
+  <div class="section-label">Colour Tokens</div>
+  <div class="color-grid">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#161618;"></div>
+      <div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#161618</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#1e1e21;"></div>
+      <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#1e1e21</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#252528;"></div>
+      <div class="swatch-info"><div class="swatch-name">Card</div><div class="swatch-hex">#252528</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#f0eeeb;"></div>
+      <div class="swatch-info"><div class="swatch-name">Text / 1</div><div class="swatch-hex">#f0eeeb</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:rgba(240,238,235,0.55);"></div>
+      <div class="swatch-info"><div class="swatch-name">Text / 2</div><div class="swatch-hex">55% white</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:rgba(240,238,235,0.30);"></div>
+      <div class="swatch-info"><div class="swatch-name">Text / 3</div><div class="swatch-hex">30% white</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#5b7fa6;"></div>
+      <div class="swatch-info"><div class="swatch-name">Accent</div><div class="swatch-hex">#5b7fa6</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#7a9ec4;"></div>
+      <div class="swatch-info"><div class="swatch-name">Accent Light</div><div class="swatch-hex">#7a9ec4</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:rgba(91,127,166,0.15);"></div>
+      <div class="swatch-info"><div class="swatch-name">Accent Dim</div><div class="swatch-hex">15% accent</div></div>
+    </div>
+  </div>
+
+  <!-- ── TYPE SCALE ── -->
+  <div class="section-label">Type Scale — DM Sans (display) + Inter (body)</div>
+  <div>
+    <div class="type-row">
+      <div class="type-meta">D1 / 72px<br>Light 300</div>
+      <div class="type-sample" style="font-family:'DM Sans';font-size:72px;font-weight:300;letter-spacing:-0.02em;line-height:1.0;color:var(--text-1)">Demokratie</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">D2 / 48px<br>Light 300</div>
+      <div class="type-sample" style="font-family:'DM Sans';font-size:48px;font-weight:300;letter-spacing:-0.02em;line-height:1.05;color:var(--text-1)">Grundrechte &amp; Bildung</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">H1 / 32px<br>Medium 500</div>
+      <div class="type-sample" style="font-family:'DM Sans';font-size:32px;font-weight:500;color:var(--text-1)">Unsere Ziele</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">H2 / 22px<br>Medium 500</div>
+      <div class="type-sample" style="font-family:'DM Sans';font-size:22px;font-weight:500;color:var(--text-1)">Politische Bildung &amp; Verfassung</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Body / 16px<br>Regular 400</div>
+      <div class="type-sample" style="font-size:16px;line-height:1.65;color:var(--text-2);max-width:560px">Wir entwickeln evidenzbasierte Programme für politische Bildung, Medienkompetenz und Einstellungsforschung — für eine starke Demokratie in Deutschland und Europa.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Small / 13px<br>Regular 400</div>
+      <div class="type-sample" style="font-size:13px;line-height:1.6;color:var(--text-2)">Kurzfristige Maßnahmen zur Stärkung der Medienkompetenz in der Zivilgesellschaft.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Label / 10px<br>Spaced caps</div>
+      <div class="type-sample" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3)">Gemeinnützig · Unabhängig · Wirkungsorientiert</div>
+    </div>
+  </div>
+
+  <!-- ── COMPONENTS ── -->
+  <div class="section-label">Core Components</div>
+  <div class="components-grid">
+    <!-- Buttons -->
+    <div class="comp-panel">
+      <div class="comp-label">Buttons</div>
+      <div class="btn-row">
+        <button class="btn-primary">Mehr erfahren →</button>
+        <button class="btn-ghost">Kontakt</button>
+        <button class="btn-link">Details</button>
+      </div>
+    </div>
+
+    <!-- Ziel card -->
+    <div class="comp-panel">
+      <div class="comp-label">Ziel / Goal Card</div>
+      <div class="ziel-card">
+        <div class="ziel-icon">⚖</div>
+        <div>
+          <div class="card-title">Verfassung &amp; Grundrechte</div>
+          <div class="card-body-text">Wir schaffen Zugänge zum Grundgesetz und stärken das Bewusstsein für demokratische Rechte.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project card -->
+    <div class="comp-panel">
+      <div class="comp-label">Projekt Card</div>
+      <div class="card-demo">
+        <span class="card-tag">Politische Bildung</span>
+        <div class="card-title">Verfassung in der Schule</div>
+        <div class="card-body-text">Ein Workshopprogramm für weiterführende Schulen zur praktischen Auseinandersetzung mit dem Grundgesetz.</div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="comp-panel">
+      <div class="comp-label">Contact Form</div>
+      <label class="input-label">Name</label>
+      <input class="input-demo" type="text" placeholder="Ihr vollständiger Name">
+      <label class="input-label">E-Mail</label>
+      <input class="input-demo" type="email" placeholder="ihre@email.de">
+      <button class="btn-primary" style="width:100%;margin-top:4px;text-align:center;">Senden →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Typewriter animation for hero
+  const words = ['Wissen.', 'Mut.', 'Engagement.', 'Dialog.', 'Grundrechten.'];
+  let wi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed');
+  function type() {
+    const word = words[wi];
+    if (!deleting) {
+      el.textContent = word.slice(0, ci + 1);
+      ci++;
+      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = word.slice(0, ci - 1);
+      ci--;
+      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+    }
+    setTimeout(type, deleting ? 60 : 100);
+  }
+  setTimeout(type, 800);
+</script>
+</body>
+</html>

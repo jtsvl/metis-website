@@ -8,48 +8,59 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = content[lang];
+const typewriterWords = t.hero.typewriterWords.join(',');
 ---
 
 <!-- Hero -->
-<section class="min-h-screen flex items-center pt-16 bg-gradient-to-br from-indigo-50 via-white to-white">
-  <div class="max-w-5xl mx-auto px-6 py-24">
+<section id="hero" class="bg-bg min-h-screen relative overflow-hidden flex flex-col justify-center py-[120px] sm:py-[80px]">
+  <!-- Dot-grid texture -->
+  <div
+    class="absolute bottom-0 right-0 pointer-events-none z-0"
+    style="background-image: radial-gradient(circle, var(--color-text-1) 1.5px, transparent 1.5px); background-size: 16px 16px; width: 320px; height: 160px; opacity: 0.12;"
+  ></div>
+
+  <div class="px-16 relative z-10">
     <div class="max-w-3xl">
-      <span class="inline-block text-xs font-semibold tracking-widest text-indigo-500 uppercase mb-6">
-        {lang === 'de' ? 'Gemeinnützig · Überparteilich · Evidenzbasiert' : 'Non-profit · Non-partisan · Evidence-based'}
-      </span>
-      <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 leading-tight mb-6">
-        {t.hero.headline[0]}<br />{t.hero.headline[1]}
+      <p class="text-accent text-[10px] tracking-[0.20em] uppercase font-medium mb-6">{t.hero.kicker}</p>
+      <h1 class="font-display font-light leading-none tracking-tight text-text-1 mb-2" style="font-size: clamp(52px, 8vw, 80px);">
+        {t.hero.headlineLine1}
       </h1>
-      <p class="text-xl text-gray-500 leading-relaxed mb-10 max-w-2xl">
-        {t.hero.subline}
-      </p>
-      <a
-        href="#ziele"
-        class="inline-flex items-center gap-2 bg-indigo-600 text-white px-7 py-3.5 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-      >
-        {t.hero.cta}
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </a>
+      <h1 class="font-display font-light leading-none tracking-tight text-text-1 mb-9" style="font-size: clamp(52px, 8vw, 80px);">
+        <span id="typewriter" data-words={typewriterWords}></span>
+      </h1>
+      <p class="text-text-2 text-base leading-relaxed max-w-[540px] mb-9">{t.hero.subline}</p>
+      <div class="flex items-center">
+        <a
+          href="#ziele"
+          class="bg-accent text-white text-[11px] tracking-[0.12em] uppercase font-medium px-6 py-3 rounded-sm hover:bg-accent-light transition-colors"
+        >
+          {t.hero.cta}
+        </a>
+        <a
+          href="#kontakt"
+          class="text-text-2 text-[11px] tracking-[0.12em] uppercase border-b border-border-hover pb-0.5 ml-7 hover:text-text-1 hover:border-text-2 transition-colors"
+        >
+          {t.hero.ctaSecondary}
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Ziele -->
-<section id="ziele" class="py-24 bg-white">
+<section id="ziele" class="py-24 bg-bg-2">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-gray-900 mb-14 text-center">{t.ziele.title}</h2>
-    <div class="grid sm:grid-cols-3 gap-8">
+    <h2 class="font-display font-light text-text-1 text-3xl tracking-tight mb-14 text-center">{t.ziele.title}</h2>
+    <div class="grid sm:grid-cols-3 gap-6">
       {t.ziele.items.map((item) => (
-        <div class="bg-indigo-50 rounded-2xl p-8 hover:shadow-md transition-shadow">
-          <div class="w-10 h-10 bg-indigo-600 rounded-xl mb-5 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <div class="bg-bg-3 border border-border rounded-md p-6 hover:border-border-hover transition-colors">
+          <div class="w-9 h-9 bg-accent-dim border border-accent rounded text-accent flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">{item.title}</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+          <h3 class="font-display font-medium text-text-1 text-lg mt-4 mb-2">{item.title}</h3>
+          <p class="text-text-2 text-sm leading-relaxed">{item.description}</p>
         </div>
       ))}
     </div>
@@ -57,17 +68,15 @@ const t = content[lang];
 </section>
 
 <!-- Projekte -->
-<section id="projekte" class="py-24 bg-gray-50">
+<section id="projekte" class="py-24 bg-bg">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-gray-900 mb-14 text-center">{t.projekte.title}</h2>
-    <div class="grid sm:grid-cols-3 gap-8">
+    <h2 class="font-display font-light text-text-1 text-3xl tracking-tight mb-14 text-center">{t.projekte.title}</h2>
+    <div class="grid sm:grid-cols-3 gap-6">
       {t.projekte.items.map((item) => (
-        <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:border-indigo-200 hover:shadow-md transition-all">
-          <span class="inline-block text-xs font-semibold tracking-wider text-indigo-500 uppercase mb-4 bg-indigo-50 px-3 py-1 rounded-full">
-            {item.tag}
-          </span>
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">{item.title}</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+        <div class="bg-bg-3 border border-border rounded-md p-6 hover:border-border-hover transition-colors">
+          <span class="text-accent text-[9px] tracking-[0.14em] uppercase bg-accent-dim px-2 py-1 rounded-sm inline-block mb-3">{item.tag}</span>
+          <h3 class="font-display font-medium text-text-1 text-lg mb-2">{item.title}</h3>
+          <p class="text-text-2 text-sm leading-relaxed">{item.description}</p>
         </div>
       ))}
     </div>
@@ -75,53 +84,73 @@ const t = content[lang];
 </section>
 
 <!-- Kontakt -->
-<section id="kontakt" class="py-24 bg-white">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="max-w-2xl mx-auto">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">{t.kontakt.title}</h2>
-      <p class="text-gray-500 text-center mb-12">{t.kontakt.description}</p>
-      <form class="space-y-5" name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact" />
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5" for="name">{t.kontakt.name}</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            required
-            placeholder={t.kontakt.namePlaceholder}
-            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5" for="email">{t.kontakt.email}</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            required
-            placeholder={t.kontakt.emailPlaceholder}
-            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1.5" for="message">{t.kontakt.message}</label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows="5"
-            placeholder={t.kontakt.messagePlaceholder}
-            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition resize-none"
-          ></textarea>
-        </div>
-        <button
-          type="submit"
-          class="w-full bg-indigo-600 text-white py-3.5 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-        >
-          {t.kontakt.send}
-        </button>
-      </form>
-    </div>
+<section id="kontakt" class="py-24 bg-bg-2">
+  <div class="max-w-2xl mx-auto px-6">
+    <h2 class="font-display font-light text-text-1 text-3xl tracking-tight mb-4 text-center">{t.kontakt.title}</h2>
+    <p class="text-text-2 text-center mb-12">{t.kontakt.description}</p>
+    <form class="space-y-5" name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact" />
+      <div>
+        <label class="block text-text-3 text-[10px] tracking-[0.12em] uppercase mb-2" for="name">{t.kontakt.name}</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          required
+          placeholder={t.kontakt.namePlaceholder}
+          class="w-full bg-bg-3 border border-border focus:border-accent text-text-1 placeholder:text-text-3 rounded-sm px-4 py-2.5 text-sm outline-none transition-colors"
+        />
+      </div>
+      <div>
+        <label class="block text-text-3 text-[10px] tracking-[0.12em] uppercase mb-2" for="email">{t.kontakt.email}</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          placeholder={t.kontakt.emailPlaceholder}
+          class="w-full bg-bg-3 border border-border focus:border-accent text-text-1 placeholder:text-text-3 rounded-sm px-4 py-2.5 text-sm outline-none transition-colors"
+        />
+      </div>
+      <div>
+        <label class="block text-text-3 text-[10px] tracking-[0.12em] uppercase mb-2" for="message">{t.kontakt.message}</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="5"
+          placeholder={t.kontakt.messagePlaceholder}
+          class="w-full bg-bg-3 border border-border focus:border-accent text-text-1 placeholder:text-text-3 rounded-sm px-4 py-2.5 text-sm outline-none transition-colors resize-none"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-accent text-white text-[11px] tracking-[0.12em] uppercase font-medium py-3 rounded-sm hover:bg-accent-light transition-colors"
+      >
+        {t.kontakt.send}
+      </button>
+    </form>
   </div>
 </section>
+
+<script>
+  const el = document.getElementById('typewriter') as HTMLElement | null;
+  if (el) {
+    const words = (el.dataset.words ?? '').split(',');
+    let wi = 0, ci = 0, deleting = false;
+    function tick() {
+      const word = words[wi];
+      if (!deleting) {
+        el!.textContent = word.slice(0, ci + 1);
+        ci++;
+        if (ci === word.length) { deleting = true; setTimeout(tick, 1800); return; }
+      } else {
+        el!.textContent = word.slice(0, ci - 1);
+        ci--;
+        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+      }
+      setTimeout(tick, deleting ? 60 : 100);
+    }
+    setTimeout(tick, 1000);
+  }
+</script>

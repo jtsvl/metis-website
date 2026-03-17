@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg:           #161618;
+  --color-bg-2:         #1e1e21;
+  --color-bg-3:         #252528;
+  --color-text-1:       #f0eeeb;
+  --color-text-2:       rgba(240,238,235,0.65);
+  --color-text-3:       rgba(240,238,235,0.38);
+  --color-accent:       #5b7fa6;
+  --color-accent-light: #7a9ec4;
+  --color-accent-dim:   rgba(91,127,166,0.15);
+  --color-border:       rgba(255,255,255,0.08);
+  --color-border-hover: rgba(255,255,255,0.18);
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+}
+
+#typewriter {
+  border-right: 2px solid var(--color-accent);
+  padding-right: 3px;
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { border-color: var(--color-accent); }
+  50%       { border-color: transparent; }
+}

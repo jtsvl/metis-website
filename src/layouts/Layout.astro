@@ -24,21 +24,30 @@ const otherLangPath = lang === 'de' ? '/en' : '/';
       : 'METIS – evidence-based programs for civic rights and democracy promotion in Germany and Europe.'} />
     <title>{title}</title>
     <link rel="icon" type="image/jpeg" href="/metis-logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-white text-gray-900 font-sans antialiased">
+  <body class="bg-bg text-text-1 font-body antialiased">
     <!-- Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-sm border-b border-border">
       <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href={lang === 'de' ? '/' : '/en'} class="flex items-center">
-          <img src="/metis-logo.jpg" alt="METIS Logo" class="h-10 w-auto" />
+        <a href={lang === 'de' ? '/' : '/en'} class="flex items-center gap-3">
+          <img src="/metis-logo.jpg" alt="METIS Logo" class="h-8 w-auto" />
+          <div>
+            <span class="font-display font-medium tracking-widest text-text-1 uppercase text-sm block">METIS</span>
+            <span class="text-text-3 text-[10px] tracking-wide block leading-none">
+              {lang === 'de' ? 'Demokratie & Grundrechte' : 'Democracy & Civic Rights'}
+            </span>
+          </div>
         </a>
-        <div class="flex items-center gap-6 text-sm font-medium">
-          <a href="#ziele" class="text-gray-600 hover:text-indigo-700 transition-colors">{t.nav.ziele}</a>
-          <a href="#projekte" class="text-gray-600 hover:text-indigo-700 transition-colors">{t.nav.projekte}</a>
-          <a href="#kontakt" class="text-gray-600 hover:text-indigo-700 transition-colors">{t.nav.kontakt}</a>
+        <div class="flex items-center gap-6">
+          <a href="#ziele" class="text-text-2 hover:text-text-1 transition-colors text-[10px] tracking-[0.12em] uppercase">{t.nav.ziele}</a>
+          <a href="#projekte" class="text-text-2 hover:text-text-1 transition-colors text-[10px] tracking-[0.12em] uppercase">{t.nav.projekte}</a>
+          <a href="#kontakt" class="text-text-2 hover:text-text-1 transition-colors text-[10px] tracking-[0.12em] uppercase">{t.nav.kontakt}</a>
           <a
             href={otherLangPath}
-            class="ml-2 px-3 py-1 rounded-full border border-gray-200 text-gray-500 hover:border-indigo-300 hover:text-indigo-600 transition-colors text-xs"
+            class="border border-accent text-accent text-[10px] tracking-[0.10em] uppercase px-3 py-1 rounded-sm hover:bg-accent-dim transition-colors"
           >
             {languages[otherLang]}
           </a>
@@ -51,11 +60,16 @@ const otherLangPath = lang === 'de' ? '/en' : '/';
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-100 py-10 mt-20">
-      <div class="max-w-5xl mx-auto px-6 text-center">
-        <img src="/metis-logo.jpg" alt="METIS Logo" class="h-12 w-auto mx-auto mb-3" />
-        <p class="text-gray-500 text-sm mb-3">{t.footer.tagline}</p>
-        <p class="text-gray-400 text-xs">{t.footer.legal}</p>
+    <footer class="bg-bg-2 border-t border-border py-10">
+      <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img src="/metis-logo.jpg" alt="METIS Logo" class="h-7 w-auto opacity-60" />
+          <div>
+            <span class="font-display font-medium tracking-widest text-text-3 uppercase text-xs block">METIS</span>
+            <span class="text-text-3 text-[10px] block">{t.footer.tagline}</span>
+          </div>
+        </div>
+        <p class="text-text-3 text-xs">{t.footer.legal}</p>
       </div>
     </footer>
   </body>

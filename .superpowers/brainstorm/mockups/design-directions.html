@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>METIS – Design Directions</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a1a;
+    padding: 40px 20px 80px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .page-sub {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+  .page-desc {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 48px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { border-color: #aaa; box-shadow: 0 8px 32px rgba(0,0,0,0.10); }
+  .card.selected { border-color: #2a6b4f; box-shadow: 0 8px 32px rgba(42,107,79,0.18); }
+
+  /* ── CARD PREVIEW AREAS ── */
+  .preview {
+    height: 340px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Direction A – Dark & Editorial */
+  .preview-a {
+    background: #141414;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 22px;
+  }
+  .preview-a .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: auto;
+  }
+  .preview-a .logo {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 300;
+    border-left: 2px solid #fff;
+    padding-left: 8px;
+    line-height: 1.4;
+  }
+  .preview-a .nav-links {
+    display: flex; gap: 14px;
+  }
+  .preview-a .nav-links span {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .preview-a .hero-text {
+    margin-top: 32px;
+  }
+  .preview-a h1 {
+    font-size: 52px;
+    font-weight: 200;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: 4px;
+  }
+  .preview-a .tagline {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+  .preview-a .dot-grid {
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);
+    gap: 5px;
+    margin-top: 24px;
+    opacity: 0.25;
+  }
+  .preview-a .dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .preview-a .cta {
+    position: absolute;
+    bottom: 20px; left: 22px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 3px;
+  }
+
+  /* Direction B – Warm & Architectural */
+  .preview-b {
+    background: #f7f3ee;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 22px;
+  }
+  .preview-b .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #d8cfc5;
+    margin-bottom: 30px;
+  }
+  .preview-b .logo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .preview-b .nav-links {
+    display: flex; gap: 14px;
+  }
+  .preview-b .nav-links span {
+    font-size: 9px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .preview-b .overline {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b5864a;
+    margin-bottom: 10px;
+  }
+  .preview-b h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .preview-b h1 em {
+    font-style: normal;
+    color: #b5864a;
+  }
+  .preview-b .body {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #666;
+    max-width: 240px;
+    margin-bottom: 18px;
+  }
+  .preview-b .btn {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #b5864a;
+    padding: 7px 14px;
+    border-radius: 2px;
+  }
+  .preview-b .deco {
+    position: absolute;
+    right: 22px; top: 60px;
+    width: 80px; height: 140px;
+    border: 1px solid #d8cfc5;
+    border-radius: 0;
+    opacity: 0.5;
+  }
+  .preview-b .deco::after {
+    content: '';
+    position: absolute;
+    top: 12px; left: 12px; right: -12px; bottom: -12px;
+    border: 1px solid #b5864a;
+    opacity: 0.4;
+  }
+
+  /* Direction C – Clean & Institutional */
+  .preview-c {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 22px;
+    border-bottom: 3px solid #1d4ed8;
+  }
+  .preview-c .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+  }
+  .preview-c .logo {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1d4ed8;
+  }
+  .preview-c .nav-links {
+    display: flex; gap: 14px;
+  }
+  .preview-c .nav-links span {
+    font-size: 9px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .preview-c .badge {
+    display: inline-block;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1d4ed8;
+    background: #eff6ff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .preview-c h1 {
+    font-size: 34px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .preview-c h1 .accent { color: #1d4ed8; }
+  .preview-c .body {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #6b7280;
+    max-width: 260px;
+    margin-bottom: 18px;
+  }
+  .preview-c .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    background: #1d4ed8;
+    padding: 8px 16px;
+    border-radius: 6px;
+  }
+  .preview-c .grid-line {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 23px,
+      #e5e7eb 23px,
+      #e5e7eb 24px
+    );
+    opacity: 0.6;
+  }
+
+  /* ── CARD BODY ── */
+  .card-body {
+    padding: 20px 22px 22px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .card-letter {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 6px;
+  }
+  .card-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+  .card-body p {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #666;
+  }
+  .card-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 10px;
+  }
+  .tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #f0f0f0;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+
+  .selection-bar {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 13px;
+    color: #888;
+  }
+  .selection-bar strong {
+    color: #2a6b4f;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">Design Directions</p>
+<p class="page-sub">Three visual directions for METIS</p>
+<p class="page-desc">Inspired by the braks.legal aesthetic — choose the direction that resonates most with METIS's voice and mission. Click a card to select it.</p>
+
+<div class="cards">
+
+  <!-- DIRECTION A -->
+  <div class="card" onclick="select(this, 'A')">
+    <div class="preview preview-a">
+      <div class="nav">
+        <div class="logo">METIS<br>Demokratie</div>
+        <div class="nav-links">
+          <span>Ziele</span><span>Projekte</span><span>Kontakt</span>
+        </div>
+      </div>
+      <div class="hero-text">
+        <div class="tagline">Demokratie &amp; Grundrechte</div>
+        <h1>DEMOKRATIE<br>BEGINNT<br>HIER.</h1>
+      </div>
+      <div class="dot-grid">
+        <!-- dots -->
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="cta">↓ &nbsp;Mehr erfahren</div>
+    </div>
+    <div class="card-body">
+      <div class="card-letter">Option A</div>
+      <h3>Dark & Editorial</h3>
+      <p>Closest to braks.legal. Dark charcoal hero, ultra-light display type, dot-grid texture. Radiates authority and gravitas — feels like a serious civic institution.</p>
+      <div class="card-tags">
+        <span class="tag">Dark-dominant</span>
+        <span class="tag">Type-forward</span>
+        <span class="tag">Dot texture</span>
+        <span class="tag">Thin fonts</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION B -->
+  <div class="card" onclick="select(this, 'B')">
+    <div class="preview preview-b">
+      <div class="nav">
+        <div class="logo">METIS</div>
+        <div class="nav-links">
+          <span>Ziele</span><span>Projekte</span><span>Kontakt</span>
+        </div>
+      </div>
+      <div class="deco"></div>
+      <div class="overline">Gemeinnützig · Unabhängig · Wirkungsorientiert</div>
+      <h1>Demokratie<br>braucht <em>Mut.</em></h1>
+      <p class="body">Wir entwickeln evidenzbasierte Programme für politische Bildung, Medienkompetenz und Meinungsforschung.</p>
+      <div class="btn">Unsere Arbeit →</div>
+    </div>
+    <div class="card-body">
+      <div class="card-letter">Option B</div>
+      <h3>Warm & Architectural</h3>
+      <p>Warm off-white background with an amber/ochre accent. Geometric line decoration. Feels like a thoughtful cultural foundation — approachable but substantive.</p>
+      <div class="card-tags">
+        <span class="tag">Warm neutral</span>
+        <span class="tag">Amber accent</span>
+        <span class="tag">Geometric deco</span>
+        <span class="tag">Mixed weight</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTION C -->
+  <div class="card" onclick="select(this, 'C')">
+    <div class="preview preview-c">
+      <div class="nav">
+        <div class="logo">METIS</div>
+        <div class="nav-links">
+          <span>Ziele</span><span>Projekte</span><span>Kontakt</span>
+        </div>
+      </div>
+      <div class="badge">Gemeinnützige Organisation</div>
+      <h1>Für eine starke<br><span class="accent">Demokratie.</span></h1>
+      <p class="body">Politische Bildung, Medienkompetenz und Einstellungsforschung — evidenzbasiert und unabhängig.</p>
+      <div class="btn">Unsere Ziele <span>→</span></div>
+      <div class="grid-line"></div>
+    </div>
+    <div class="card-body">
+      <div class="card-letter">Option C</div>
+      <h3>Clean & Institutional</h3>
+      <p>Crisp white with a strong blue accent. Familiar, trustworthy, accessible. Feels like a well-run NGO or European institution — clear and immediately legible.</p>
+      <div class="card-tags">
+        <span class="tag">White base</span>
+        <span class="tag">Blue accent</span>
+        <span class="tag">High contrast</span>
+        <span class="tag">Grid motif</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="selection-bar" id="bar">Click a card to select your preferred direction.</div>
+
+<script>
+  let selected = null;
+  function select(el, choice) {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selected = choice;
+    document.getElementById('bar').innerHTML = 'Selected: <strong>Option ' + choice + '</strong> — let me know in the terminal if this is right, or if you want to explore further.';
+  }
+</script>
+</body>
+</html>

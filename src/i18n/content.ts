@@ -15,10 +15,13 @@ export const content = {
       kontakt: "Kontakt",
     },
     hero: {
-      headline: ["Demokratie", "stärken. Rechte schützen."],
+      kicker: "Gemeinnützig · Unabhängig · Wirkungsorientiert",
+      headlineLine1: "Demokratie braucht",
+      typewriterWords: ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte."],
       subline:
         "METIS entwickelt evidenzbasierte Programme für politische Bildung, Medienkompetenz und demokratische Resilienz in Deutschland und Europa.",
-      cta: "Mehr erfahren",
+      cta: "Unsere Arbeit",
+      ctaSecondary: "Mehr über uns",
     },
     ziele: {
       title: "Unsere Ziele",
@@ -87,10 +90,13 @@ export const content = {
       kontakt: "Contact",
     },
     hero: {
-      headline: ["Strengthening Democracy.", "Protecting Rights."],
+      kicker: "Non-profit · Independent · Impact-driven",
+      headlineLine1: "Democracy needs",
+      typewriterWords: ["Knowledge.", "Courage.", "Engagement.", "Dialogue.", "Fundamental Rights."],
       subline:
         "METIS designs evidence-based programs for civic education, media literacy, and democratic resilience in Germany and Europe.",
-      cta: "Learn more",
+      cta: "Our work",
+      ctaSecondary: "About us",
     },
     ziele: {
       title: "Our Goals",
