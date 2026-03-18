@@ -23,4 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# TinaCMS admin build output (regenerated on every deploy)
+public/admin/
+
 node_modules

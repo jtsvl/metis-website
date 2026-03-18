@@ -1,0 +1,111 @@
+fragment DeParts on De {
+  __typename
+  nav {
+    __typename
+    ziele
+    projekte
+    kontakt
+    menu
+  }
+  hero {
+    __typename
+    kicker
+    headlineLine1
+    typewriterWords
+    subline
+    cta
+    ctaSecondary
+  }
+  ziele {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+    }
+  }
+  projekte {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      tag
+    }
+  }
+  kontakt {
+    __typename
+    title
+    description
+    name
+    email
+    message
+    send
+    namePlaceholder
+    emailPlaceholder
+    messagePlaceholder
+  }
+  footer {
+    __typename
+    tagline
+    legal
+  }
+}
+
+fragment EnParts on En {
+  __typename
+  nav {
+    __typename
+    ziele
+    projekte
+    kontakt
+    menu
+  }
+  hero {
+    __typename
+    kicker
+    headlineLine1
+    typewriterWords
+    subline
+    cta
+    ctaSecondary
+  }
+  ziele {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+    }
+  }
+  projekte {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      tag
+    }
+  }
+  kontakt {
+    __typename
+    title
+    description
+    name
+    email
+    message
+    send
+    namePlaceholder
+    emailPlaceholder
+    messagePlaceholder
+  }
+  footer {
+    __typename
+    tagline
+    legal
+  }
+}
