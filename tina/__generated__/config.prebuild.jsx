@@ -101,6 +101,7 @@ var sectionFields = [
   { type: "object", name: "footer", label: "Footer", fields: footerFields }
 ];
 var config_default = defineConfig({
+  branch: process.env.TINA_BRANCH || process.env.HEAD || "main",
   clientId: process.env.TINA_PUBLIC_CLIENT_ID ?? "",
   token: process.env.TINA_TOKEN ?? "",
   build: {
