@@ -108,6 +108,7 @@ const sectionFields = [
 ];
 
 export default defineConfig({
+  branch: process.env.TINA_BRANCH || process.env.HEAD || "main",
   clientId: process.env.TINA_PUBLIC_CLIENT_ID ?? "",
   token: process.env.TINA_TOKEN ?? "",
   build: {
