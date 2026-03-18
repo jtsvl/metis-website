@@ -31,11 +31,13 @@ const otherLangPath = lang === 'de' ? '/en' : '/';
   <body class="bg-bg text-text-1 font-body antialiased">
     <!-- Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-sm">
-      <nav class="px-16 flex items-center justify-between">
+      <nav class="px-4 md:px-16 flex items-center justify-between">
         <a href={lang === 'de' ? '/' : '/en'} class="flex items-center">
-          <img src="/metis-logo.png" alt="METIS Logo" class="h-28 w-auto" />
+          <img src="/metis-logo.png" alt="METIS Logo" class="h-16 md:h-28 w-auto" />
         </a>
-        <div class="flex items-center gap-10">
+
+        <!-- Desktop nav links -->
+        <div class="hidden md:flex items-center gap-10">
           <a href="#ziele" class="text-text-2 hover:text-text-1 transition-colors text-[15px] tracking-[0.12em] uppercase">{t.nav.ziele}</a>
           <a href="#projekte" class="text-text-2 hover:text-text-1 transition-colors text-[15px] tracking-[0.12em] uppercase">{t.nav.projekte}</a>
           <a href="#kontakt" class="text-text-2 hover:text-text-1 transition-colors text-[15px] tracking-[0.12em] uppercase">{t.nav.kontakt}</a>
@@ -46,8 +48,41 @@ const otherLangPath = lang === 'de' ? '/en' : '/';
             {otherLang}
           </a>
         </div>
+
+        <!-- Hamburger button (mobile only) -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden flex items-center justify-center w-10 h-10 text-text-2 hover:text-text-1 transition-colors"
+          aria-label={t.nav.menu}
+          aria-expanded="false"
+        >
+          <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </nav>
     </header>
+
+    <!-- Mobile menu overlay (outside header to avoid header's bg-bg/90 opacity) -->
+    <div
+      id="mobile-menu"
+      class="hidden md:hidden fixed inset-x-0 top-16 bottom-0 bg-bg z-40"
+    >
+      <div class="flex flex-col items-center gap-8 pt-12">
+        <a href="#ziele" class="mobile-nav-link text-text-2 hover:text-text-1 transition-colors text-lg tracking-[0.12em] uppercase">{t.nav.ziele}</a>
+        <a href="#projekte" class="mobile-nav-link text-text-2 hover:text-text-1 transition-colors text-lg tracking-[0.12em] uppercase">{t.nav.projekte}</a>
+        <a href="#kontakt" class="mobile-nav-link text-text-2 hover:text-text-1 transition-colors text-lg tracking-[0.12em] uppercase">{t.nav.kontakt}</a>
+        <a
+          href={otherLangPath}
+          class="border border-accent text-accent text-lg tracking-[0.10em] uppercase px-4 py-2 rounded-sm hover:bg-accent-dim transition-colors"
+        >
+          {otherLang}
+        </a>
+      </div>
+    </div>
 
     <main>
       <slot />
@@ -57,11 +92,38 @@ const otherLangPath = lang === 'de' ? '/en' : '/';
     <footer class="bg-bg-2 border-t border-border py-10">
       <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <img src="/metis-logo.png" alt="METIS Logo" class="h-32 w-auto opacity-40" />
+          <img src="/metis-logo.png" alt="METIS Logo" class="h-20 md:h-32 w-auto opacity-40" />
           <span class="text-text-3 text-[10px]">{t.footer.tagline}</span>
         </div>
         <p class="text-text-3 text-xs">{t.footer.legal}</p>
       </div>
     </footer>
+    <script>
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function toggleMenu() {
+        const isOpen = menu?.classList.toggle('hidden') === false;
+        menuBtn?.setAttribute('aria-expanded', String(isOpen));
+        hamburgerIcon?.classList.toggle('hidden', isOpen);
+        closeIcon?.classList.toggle('hidden', !isOpen);
+      }
+
+      function closeMenu() {
+        menu?.classList.add('hidden');
+        menuBtn?.setAttribute('aria-expanded', 'false');
+        hamburgerIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+      }
+
+      menuBtn?.addEventListener('click', toggleMenu);
+      mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    </script>
   </body>
 </html>

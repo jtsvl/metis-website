@@ -8,7 +8,14 @@
   "hero": {
     "kicker": "Gemeinnützig · Unabhängig · Wirkungsorientiert",
     "headlineLine1": "Demokratie braucht",
-    "typewriterWords": ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte.", "Vielfalt."],
+    "typewriterWords": [
+      "Wissen.",
+      "Mut.",
+      "Engagement.",
+      "Dialog.",
+      "Grundrechte.",
+      "Vielfalt."
+    ],
     "subline": "METIS entwickelt evidenzbasierte Programme für politische Bildung, Medienkompetenz und demokratische Resilienz in Deutschland und Europa.",
     "cta": "Unsere Arbeit",
     "ctaSecondary": "Mehr über uns"
@@ -27,6 +34,10 @@
       {
         "title": "Einstellungsforschung",
         "description": "Wir untersuchen den Wandel demokratischer Einstellungen in der Bevölkerung und liefern wissenschaftlich fundierte Grundlagen für politisches Handeln."
+      },
+      {
+        "title": "Thomy ein Segelboot kaufen",
+        "description": "Weil er damit sehr cool aussehen würde 😎"
       }
     ]
   },
