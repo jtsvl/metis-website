@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "ziele": "Goals",
+    "projekte": "Projects",
+    "kontakt": "Contact"
+  },
+  "hero": {
+    "kicker": "Non-profit · Independent · Impact-driven",
+    "headlineLine1": "Democracy needs",
+    "typewriterWords": ["Knowledge.", "Courage.", "Engagement.", "Dialogue.", "Fundamental Rights."],
+    "subline": "METIS designs evidence-based programs for civic education, media literacy, and democratic resilience in Germany and Europe.",
+    "cta": "Our work",
+    "ctaSecondary": "About us"
+  },
+  "ziele": {
+    "title": "Our Goals",
+    "items": [
+      {
+        "title": "Civic Education",
+        "description": "We promote understanding of constitutional values and democratic institutions in Germany and Europe through practical educational programs."
+      },
+      {
+        "title": "Media Literacy",
+        "description": "We build critical thinking skills for navigating digital media and disinformation — fostering an informed and resilient society."
+      },
+      {
+        "title": "Attitude Research",
+        "description": "We study shifts in democratic attitudes among the population and provide evidence-based foundations for political action."
+      }
+    ]
+  },
+  "projekte": {
+    "title": "Projects",
+    "items": [
+      {
+        "title": "Constitution in the Classroom",
+        "description": "Teaching modules for schools covering the Basic Law, fundamental rights, and European values — co-developed with educators.",
+        "tag": "Education"
+      },
+      {
+        "title": "Digital Citizenship",
+        "description": "Workshops and online materials for critically evaluating news sources and understanding algorithmic influence.",
+        "tag": "Media"
+      },
+      {
+        "title": "Democracy Barometer",
+        "description": "Annual survey on democratic attitudes and trust in state institutions among the German electorate.",
+        "tag": "Research"
+      }
+    ]
+  },
+  "kontakt": {
+    "title": "Contact",
+    "description": "Would you like to collaborate with us or have questions about our programs? We look forward to hearing from you.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "messagePlaceholder": "Your message..."
+  },
+  "footer": {
+    "tagline": "For a strong democracy.",
+    "legal": "Non-profit organization · Imprint · Privacy"
+  }
+}

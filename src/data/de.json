@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "ziele": "Ziele",
+    "projekte": "Projekte",
+    "kontakt": "Kontakt"
+  },
+  "hero": {
+    "kicker": "Gemeinnützig · Unabhängig · Wirkungsorientiert",
+    "headlineLine1": "Demokratie braucht",
+    "typewriterWords": ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte."],
+    "subline": "METIS entwickelt evidenzbasierte Programme für politische Bildung, Medienkompetenz und demokratische Resilienz in Deutschland und Europa.",
+    "cta": "Unsere Arbeit",
+    "ctaSecondary": "Mehr über uns"
+  },
+  "ziele": {
+    "title": "Unsere Ziele",
+    "items": [
+      {
+        "title": "Politische Bildung",
+        "description": "Wir fördern das Verständnis für Verfassungswerte und demokratische Institutionen in Deutschland und Europa durch praxisnahe Bildungsangebote."
+      },
+      {
+        "title": "Medienkompetenz",
+        "description": "Wir schulen kritisches Denken im Umgang mit digitalen Medien und Desinformation – für eine informierte und widerstandsfähige Gesellschaft."
+      },
+      {
+        "title": "Einstellungsforschung",
+        "description": "Wir untersuchen den Wandel demokratischer Einstellungen in der Bevölkerung und liefern wissenschaftlich fundierte Grundlagen für politisches Handeln."
+      }
+    ]
+  },
+  "projekte": {
+    "title": "Projekte",
+    "items": [
+      {
+        "title": "Verfassung im Unterricht",
+        "description": "Lehrmodule für Schulen zu Grundgesetz, Grundrechten und europäischen Werten – entwickelt gemeinsam mit Pädagoginnen und Pädagogen.",
+        "tag": "Bildung"
+      },
+      {
+        "title": "Digitale Mündigkeit",
+        "description": "Workshops und Online-Materialien zur kritischen Bewertung von Nachrichtenquellen und algorithmischer Beeinflussung.",
+        "tag": "Medien"
+      },
+      {
+        "title": "Demokratiebarometer",
+        "description": "Jährliche Erhebung zu demokratischen Einstellungen und Vertrauen in staatliche Institutionen in der deutschen Wahlbevölkerung.",
+        "tag": "Forschung"
+      }
+    ]
+  },
+  "kontakt": {
+    "title": "Kontakt",
+    "description": "Sie möchten mit uns zusammenarbeiten oder haben Fragen zu unseren Programmen? Wir freuen uns über Ihre Nachricht.",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "send": "Nachricht senden",
+    "namePlaceholder": "Ihr Name",
+    "emailPlaceholder": "ihre@email.de",
+    "messagePlaceholder": "Ihre Nachricht..."
+  },
+  "footer": {
+    "tagline": "Für eine starke Demokratie.",
+    "legal": "Gemeinnützige Gesellschaft · Impressum · Datenschutz"
+  }
+}
