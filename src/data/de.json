@@ -2,12 +2,13 @@
   "nav": {
     "ziele": "Ziele",
     "projekte": "Projekte",
-    "kontakt": "Kontakt"
+    "kontakt": "Kontakt",
+    "menu": "Menü"
   },
   "hero": {
     "kicker": "Gemeinnützig · Unabhängig · Wirkungsorientiert",
     "headlineLine1": "Demokratie braucht",
-    "typewriterWords": ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte."],
+    "typewriterWords": ["Wissen.", "Mut.", "Engagement.", "Dialog.", "Grundrechte.", "Vielfalt."],
     "subline": "METIS entwickelt evidenzbasierte Programme für politische Bildung, Medienkompetenz und demokratische Resilienz in Deutschland und Europa.",
     "cta": "Unsere Arbeit",
     "ctaSecondary": "Mehr über uns"

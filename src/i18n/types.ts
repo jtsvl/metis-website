@@ -2,6 +2,7 @@ export interface NavContent {
   ziele: string;
   projekte: string;
   kontakt: string;
+  menu: string;
 }
 
 export interface HeroContent {
